@@ -33,7 +33,8 @@ public class StarGem : MonoBehaviour
             player.CanAirJump = true;
             meshRenderer.enabled = false;
             collider.enabled = false;
-            source.PlayOneShot(pickUpSFX);
+            SoundEffectPlayer.audioSource.PlayOneShot(pickUpSFX);
+            // source.PlayOneShot(pickUpSFX);
             Instantiate(pickUpVFX, transform.position, Quaternion.identity);
             //Invoke性能不太好，推荐使用协程
             //Invoke(nameof(Reset), 3f);

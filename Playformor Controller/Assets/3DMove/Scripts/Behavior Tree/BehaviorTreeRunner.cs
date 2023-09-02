@@ -12,6 +12,8 @@ public class BehaviorTreeRunner : MonoBehaviour
         tree = tree.Clone(); 
         tree.body =GetComponent<Rigidbody>();
         tree.nodes.ForEach(x => x.body = tree.body);
+        tree.BindBlackBoard();
+        tree.rootNode.blackborad.AddData("aa", 1);
         // tree = ScriptableObject.CreateInstance<MyBehaviorTree>();
         // var log1 = ScriptableObject.CreateInstance<DebugLogNode>();
         // log1.logStr = "Æô¶¯1£¡";

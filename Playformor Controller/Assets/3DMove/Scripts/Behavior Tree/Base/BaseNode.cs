@@ -25,6 +25,9 @@ namespace BehaviorTree
         public Vector2 position;
 
         public Rigidbody body;
+
+        public BlackBorad blackborad;
+
         public NodeState Update()
         {
             if (!started)

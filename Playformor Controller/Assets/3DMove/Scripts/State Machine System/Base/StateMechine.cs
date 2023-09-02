@@ -42,4 +42,9 @@ public class StateMechine:MonoBehaviour
     {
         SwichState(stateTable[newStateType]);
     }
+
+    public void ExitState() {
+        currentState.Exit();
+        currentState = null;
+    }
 }

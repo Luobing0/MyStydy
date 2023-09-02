@@ -141,4 +141,11 @@ public class BehavirTreeView : GraphView
         nodeView.OnNodeSelected = OnNodeSelected;
         AddElement(nodeView);
     }
+
+    public void UpdateNodeStates() {
+        nodes.ForEach(n => {
+            NodeView node = n as NodeView;
+            node.UpdateState();
+        });
+    }
 }

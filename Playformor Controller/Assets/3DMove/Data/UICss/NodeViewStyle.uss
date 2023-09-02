@@ -1,9 +1,9 @@
 #node-border {
     background-color: rgb(56, 56, 56);
-    border-left-color: rgba(0, 0, 0, 255);
-    border-right-color: rgba(0, 0, 0, 255);
-    border-top-color: rgba(0, 0, 0, 255);
-    border-bottom-color: rgba(0, 0, 0, 255);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
     border-left-width: 1px;
     border-right-width: 1px;
     border-top-width: 1px;
@@ -44,10 +44,10 @@
 }
 
 #selection-border {
-    border-left-color: rgba(13, 108, 183, 255);
-    border-right-color: rgba(13, 108, 183, 255);
-    border-top-color: rgba(13, 108, 183, 255);
-    border-bottom-color: rgba(13, 108, 183, 255);
+    border-left-color: rgb(13, 108, 183);
+    border-right-color: rgb(13, 108, 183);
+    border-top-color: rgb(13, 108, 183);
+    border-bottom-color: rgb(13, 108, 183);
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
@@ -100,24 +100,45 @@
 }
 
 #divider {
-    -unity-text-outline-color: rgba(96, 96, 96, 255);
-    background-color: rgba(108, 108, 108, 255);
+    -unity-text-outline-color: rgb(96, 96, 96);
+    background-color: rgb(108, 108, 108);
     min-height: 1px;
 }
 
 .action #input {
-    background-color: rgba(254, 167, 140, 255);
+    background-color: rgb(254, 167, 140);
 }
 
 .composite #input {
-    background-color: rgba(136, 105, 165, 255);
+    background-color: rgb(136, 105, 165);
 }
 
 .decorator #input {
-    background-color: rgba(247, 219, 112, 255);
+    background-color: rgb(247, 219, 112);
 }
 
 .root #input {
-    background-color: rgba(96, 239, 219, 255);
+    background-color: rgb(96, 239, 219);
     min-height: 20px;
+}
+
+#node-state {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.running #node-state {
+    background-color: rgba(255, 249, 16, 255);
+}
+
+.success #node-state {
+    background-color: rgba(35, 255, 0, 255);
+}
+
+.failure #node-state {
+    background-color: rgba(255, 13, 13, 0.86);
+    -unity-text-outline-color: rgba(40, 40, 40, 255);
 }

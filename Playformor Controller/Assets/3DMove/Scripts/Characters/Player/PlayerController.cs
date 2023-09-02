@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
     PlayerInput playerInput;
     Rigidbody rigidBody;
 
+
+    public AudioSource PlayerSource{get; private set;}
+
+
+    public bool Victory { get; private set; }
     public bool CanAirJump {get; set;}
     public bool IsGround => groundDetector.IsGround;
     public bool IsFalling => !groundDetector.IsGround && rigidBody.velocity.y < 0f;
@@ -19,6 +24,7 @@ public class PlayerController : MonoBehaviour
         groundDetector = GetComponentInChildren<PlayerGroundDetector>();
         playerInput = GetComponent<PlayerInput>();
         rigidBody = GetComponent<Rigidbody>();
+        PlayerSource = GetComponentInChildren<AudioSource>();
     }
 
     private void Start()
@@ -28,7 +34,31 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
+    }
 
+    private void OnEnable() {
+        EventManager.AddListener( OnLevelPass, EventNames.PlayerPassEvent);
+    }
+
+    
+    private void OnDisable() {
+        EventManager.RemoveListener(OnLevelPass, EventNames.PlayerPassEvent);
+    }
+
+    void OnLevelPass() {
+        Victory = true;
+    }
+
+    public void OnDefead() {
+        //Victory = false;
+        playerInput.DisablePlayerInputs();
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.useGravity = false;
+        rigidBody.detectCollisions = false;
+        GetComponent<StateMechine>().SwichState(typeof(PlayerState_Defeated));
+        Debug.Log("Ê§°Ü");
+        EventManager.Dispatch(EventNames.UILoseEvent);
     }
 
     public void Move(float velocityX)

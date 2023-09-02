@@ -5,9 +5,9 @@ using BehaviorTree;
 public class RootNode : BaseNode
 {
     public BaseNode childNode;
+
     protected override void OnStart()
     {
-
     }
 
     protected override void OnStop()

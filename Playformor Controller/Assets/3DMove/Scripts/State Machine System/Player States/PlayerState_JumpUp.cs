@@ -8,10 +8,12 @@ public class PlayerState_JumpUp : PlayerState
     [SerializeField] float jumpForce = 7f;
     [SerializeField] float moveSpeed = 4f;
     [SerializeField] ParticleSystem jumpVFX;
+    [SerializeField] AudioClip jumpSFX;
     public override void Enter()
     {
         base.Enter();
         input.hasJumpInputBuffer = false;
+        playerController.PlayerSource.PlayOneShot(jumpSFX);
         playerController.SetVelocityY(jumpForce);
         Instantiate(jumpVFX, playerController.transform.position, Quaternion.identity);
     }

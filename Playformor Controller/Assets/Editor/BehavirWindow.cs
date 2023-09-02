@@ -9,6 +9,10 @@ public class BehavirWindow : EditorWindow
 {
     BehavirTreeView behavirTreeView;
     InspectorView inspectorView;
+    IMGUIContainer blackBoradView;
+
+    SerializedObject treeobj;
+    SerializedProperty blackboradProperty;
 
     [MenuItem("Window/UI Toolkit/BehavirWindow")]
     public static void ShowExample()
@@ -46,9 +50,16 @@ public class BehavirWindow : EditorWindow
 
         behavirTreeView = root.Q<BehavirTreeView>();
         inspectorView = root.Q<InspectorView>();
+        blackBoradView = root.Q<IMGUIContainer>();
+        blackBoradView.onGUIHandler = () => {
+            treeobj.Update();
+            EditorGUILayout.PropertyField(blackboradProperty);
+            treeobj.ApplyModifiedProperties();
+        };
         behavirTreeView.OnNodeSelected = OnNodeSelectionChanged;
         OnSelectionChange();
     }
+
 
     private void OnEnable()
     {
@@ -108,10 +119,18 @@ public class BehavirWindow : EditorWindow
             }
         }
 
+        if(tree != null) {
+            treeobj = new SerializedObject(tree);
+            blackboradProperty = treeobj.FindProperty("blackBorad");
+        }
     }
 
     void OnNodeSelectionChanged(NodeView node)
     {
         inspectorView.UpdateSlection(node);
+    }
+
+    private void OnInspectorUpdate() {
+        behavirTreeView?.UpdateNodeStates();
     }
 }

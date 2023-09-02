@@ -13,6 +13,7 @@ public class WaitNode : ActionNode
     {
         startTime = Time.time;
         body.useGravity = true;
+        Debug.Log($"µ»¥˝{duration}√Î÷”");
     }
 
     protected override void OnStop()

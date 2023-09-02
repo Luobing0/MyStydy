@@ -1,9 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <SplitView fixed-pane-initial-dimension="300">
         <ui:VisualElement name="left">
-            <InspectorView>
-                <ui:Label text="检视" display-tooltip-when-elided="true" />
-            </InspectorView>
+            <SplitView orientation="Vertical" fixed-pane-initial-dimension="242">
+                <InspectorView>
+                    <ui:IMGUIContainer style="height: 15px; background-color: rgba(22, 22, 22, 255);">
+                        <ui:Label text="检视" display-tooltip-when-elided="true" />
+                    </ui:IMGUIContainer>
+                </InspectorView>
+                <ui:VisualElement name="BlackBorad">
+                    <ui:IMGUIContainer style="background-color: rgb(22, 22, 22); height: 15px; top: 0;">
+                        <ui:Label text="黑板" display-tooltip-when-elided="true" />
+                    </ui:IMGUIContainer>
+                </ui:VisualElement>
+            </SplitView>
         </ui:VisualElement>
         <ui:VisualElement name="right">
             <BehavirTreeView focusable="true" style="height: 100%; width: 100%;">

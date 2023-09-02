@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/3DMove/Data/UICss/NodeViewStyle.uss?fileID=7433441132597879392&amp;guid=28756133634e1d748a0d4a29f2bd1adb&amp;type=3#NodeViewStyle" />
+    <ui:VisualElement name="node-state" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;" />
     <ui:VisualElement name="node-border" picking-mode="Ignore">
         <ui:VisualElement name="contents">
             <ui:VisualElement name="top">

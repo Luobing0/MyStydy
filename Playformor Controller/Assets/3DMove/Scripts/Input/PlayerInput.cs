@@ -37,14 +37,19 @@ public class PlayerInput : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void OnGUI()
-    {
-        Rect rect = new Rect(200, 200, 200, 200);
-        string message = "Has Jump Input Buffer:" + hasJumpInputBuffer;
-        GUIStyle style = new GUIStyle();
-        style.fontSize = 20;
-        style.fontStyle = FontStyle.Bold;
-        GUI.Label(rect, message, style);
+    //private void OnGUI()
+    //{
+    //    Rect rect = new Rect(200, 200, 200, 200);
+    //    string message = "Has Jump Input Buffer:" + hasJumpInputBuffer;
+    //    GUIStyle style = new GUIStyle();
+    //    style.fontSize = 20;
+    //    style.fontStyle = FontStyle.Bold;
+    //    GUI.Label(rect, message, style);
+    //}
+
+    public void DisablePlayerInputs() {
+        playerInputActions.GamePlay.Disable();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void SetJumpInputBufferTime()

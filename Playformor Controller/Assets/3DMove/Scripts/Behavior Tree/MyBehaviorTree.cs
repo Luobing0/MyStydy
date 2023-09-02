@@ -11,9 +11,8 @@ public class MyBehaviorTree : ScriptableObject
     public BaseNode rootNode;
     public NodeState treeState = NodeState.Running;
     public List<BaseNode> nodes = new List<BaseNode>();
-
     public Rigidbody body;
-
+    public BlackBorad blackBorad = new BlackBorad();
 
     public NodeState Update()
     {
@@ -144,12 +143,19 @@ public class MyBehaviorTree : ScriptableObject
     {
         MyBehaviorTree tree = Instantiate(this);
         tree.rootNode = tree.rootNode.Clone();
+        
         tree.nodes = new List<BaseNode>();
         Traverse(tree.rootNode, (n) =>
         {
             tree.nodes.Add(n);
         });
         return tree;
+    }
+
+    public void BindBlackBoard() {
+        Traverse(rootNode, (n) => {
+            n.blackborad = blackBorad;
+        });
     }
 
 }
