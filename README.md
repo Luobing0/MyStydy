@@ -96,4 +96,10 @@
         }
     }
 ```
+使用ScriptableObject 对每个状态进行分离，只在每个状态中判断改状态的行为。
+
+![M89HFC(6DW{9OHUJTZMRCPD](https://github.com/Luobing0/Platform-For-FSM-and-Behavior-Tree/assets/50789197/22310b6b-0f56-4391-bd6c-da7fbf5ff0b8)
+
+![5D0DT 7N UNP5M24`KN@8VU](https://github.com/Luobing0/Platform-For-FSM-and-Behavior-Tree/assets/50789197/d7133bcb-2ec3-4295-aff3-06bbca8f202e)
+
 ## 行为树
