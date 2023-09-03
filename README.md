@@ -56,3 +56,44 @@
         hasJumpInputBuffer = false;
     }
 ```
+
+## 状态机
+
+状态机基类，玩家、敌人的状态机脚本继承于它
+```csharp
+    IState currentState;
+
+    protected Dictionary<System.Type, IState> stateTable;
+
+    private void Update()
+    {
+        currentState.LogicUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        currentState.PhysicUpdate();
+    }
+
+    protected void SwichOn(IState newState)
+    {
+        currentState = newState;
+        currentState.Enter();
+    }
+```
+在玩家的状态机脚本中进行对所有的状态进行初始化
+```csharp
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+        input = GetComponent<PlayerInput>();
+        controller = GetComponent<PlayerController>();
+        stateTable = new Dictionary<System.Type, IState>(states.Length);
+        foreach (var item in states)
+        {
+            item.Initialize(animator, input, controller, this);
+            stateTable.Add(item.GetType(), item);
+        }
+    }
+```
+## 行为树
