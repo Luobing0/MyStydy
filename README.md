@@ -103,3 +103,47 @@
 ![5D0DT 7N UNP5M24`KN@8VU](https://github.com/Luobing0/Platform-For-FSM-and-Behavior-Tree/assets/50789197/d7133bcb-2ec3-4295-aff3-06bbca8f202e)
 
 ## 行为树
+自己学习的行为树模式
+![image](https://github.com/Luobing0/Platform-For-FSM-and-Behavior-Tree/assets/50789197/083f54f7-9eaf-4708-9ed5-547b697e6b83)
+相对于状态机来说，行为树更能够对NPC的AI进行更好的维护。
+
+所有节点的基类
+```csharp
+        public NodeState Update()
+        {
+            if (!started)
+            {
+                OnStart();
+                started = true;
+            }
+
+            state = OnUpdate();
+            if (state == NodeState.Failure || state == NodeState.Success)
+            {
+                OnStop();
+                started = false;
+            }
+
+            return state;
+        }
+```
+### UIToolkit
+在实现行为树可视化的部分使用UIToolkit中的USS的编写和自定义控件，通过添加IMGUIContainer的元素类型，例如Label、Button、ListView等等
+```csharp
+IMGUIContainer container = new IMGUIContainer(() =>
+        {
+            if (editor.target)
+            {
+                editor.OnInspectorGUI();
+            }
+        });
+        Add(container);
+```
+### 黑板模式
+为了让节点有一个地方可以让所有的行为树节点访问到数据。黑板从各个模块中来收集行为树决策和执行的过程中需要用到的数据，然后提交给行为树使用。这里是使用一个字段存储黑板值
+    public Dictionary<string, object> blackDicData;
+
+### 例子
+这里是简单的例子：一个敌人按照顺序节点，将敌人的巡逻行为作为一个节点，然后巡逻一定实现自动停止，执行后面DebugLogNode和WaitNode。
+![image](https://github.com/Luobing0/Platform-For-FSM-and-Behavior-Tree/assets/50789197/26f77160-d38e-4fa2-9740-fa38be156c26)
+
